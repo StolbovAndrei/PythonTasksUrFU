@@ -1,0 +1,199 @@
+{
+    "Movies": [
+        {
+            "@rating": "R",
+            "Title": {
+                "@runtime": "177",
+                "text": "The Godfather"
+            },
+            "Genre": " Crime Drama ",
+            "Director": {
+                "Name": {
+                    "First": "Francis Ford",
+                    "Last": "Coppola"
+                }
+            },
+            "Studio": "Paramount Pictures ",
+            "Year": "1972 "
+        },
+        {
+            "@rating": "R",
+            "Title": {
+                "@runtime": "142",
+                "text": "The Shwashank Redemption"
+            },
+            "Genre": " Drama",
+            "Director": {
+                "Name": {
+                    "@highratedmovie": "The Mist",
+                    "First": "Frank",
+                    "Last": "Darabont"
+                }
+            },
+            "Studio": "Columbia Pictures ",
+            "Year": " 1994"
+        },
+        {
+            "@rating": "PG",
+            "Title": {
+                "@runtime": "204",
+                "text": "Sholay"
+            },
+            "Genre": " Action-Advneture",
+            "Director": {
+                "Name": {
+                    "@highratedmovie": "Shaan",
+                    "First": "Ramesh",
+                    "Last": "Sippy"
+                }
+            },
+            "Studio": "United Producers Sippy Films ",
+            "Year": " 1975"
+        },
+        {
+            "@rating": "G",
+            "Title": {
+                "text": "Swades"
+            },
+            "Genre": " Drama",
+            "Director": {
+                "Name": {
+                    "@highratedmovie": "Jodhaa Akbar",
+                    "First": "Ashutosh",
+                    "Last": "Gowariker"
+                }
+            },
+            "Studio": "Ashutosh Gowariker Productions",
+            "Year": " 2004"
+        },
+        {
+            "@rating": "G",
+            "Title": {
+                "@runtime": "183",
+                "text": "Guide"
+            },
+            "Genre": " Romantic Drama",
+            "Director": {
+                "Name": {
+                    "@highratedmovie": "Johny Mera Naam",
+                    "First": "Vijay",
+                    "Last": "Anand"
+                }
+            },
+            "Studio": "Navketan Films",
+            "Year": " 1965"
+        },
+        {
+            "@rating": "G",
+            "Title": {
+                "text": "Guru"
+            },
+            "Genre": " Drama",
+            "Director": {
+                "Name": {
+                    "@highratedmovie": "Roja",
+                    "First": "Mani",
+                    "Last": "Ratnam"
+                }
+            },
+            "Studio": "Madras Talkies",
+            "Year": " 2007"
+        },
+        {
+            "@rating": "PG",
+            "Title": {
+                "@runtime": "174",
+                "text": "Sarfarosh"
+            },
+            "Genre": "Action Drama",
+            "Director": {
+                "Name": {
+                    "First": "John Mathew",
+                    "Last": "Matthan"
+                }
+            },
+            "Studio": "Cinematt Pictures",
+            "Year": " 1999"
+        },
+        {
+            "@rating": "G",
+            "Title": {
+                "@runtime": "224",
+                "text": "Lagaan"
+            },
+            "Genre": "Epic Sports-Drama",
+            "Director": {
+                "Name": {
+                    "First": "Ashutosh",
+                    "Last": "Gowariker"
+                }
+            },
+            "Studio": "Aamir Khan Productions",
+            "Year": " 2001"
+        },
+        {
+            "@rating": "PG-13",
+            "Title": {
+                "@runtime": "135",
+                "text": "A Beautiful Mind"
+            },
+            "Genre": "Biographical Drama",
+            "Director": {
+                "Name": {
+                    "@highratedmovie": "The Da Vinci Code",
+                    "First": "Ron",
+                    "Last": "Howard"
+                }
+            },
+            "Studio": "Imagine Entertainment",
+            "Year": " 2001"
+        },
+        {
+            "@rating": "PG",
+            "Title": {
+                "text": "Ship of Theseus"
+            },
+            "Genre": "Indian Drama",
+            "Director": {
+                "Name": {
+                    "First": "Anand",
+                    "Last": "Gandhi"
+                }
+            },
+            "Studio": "Recyclewala Films",
+            "Year": " 2012"
+        },
+        {
+            "@rating": "PG-13",
+            "Title": {
+                "@runtime": "170",
+                "text": "Purab aur Paschim"
+            },
+            "Genre": "Patriotic",
+            "Director": {
+                "Name": {
+                    "First": "Manoj",
+                    "Last": "Kumar"
+                }
+            },
+            "Studio": "Vishal Inernational Productions",
+            "Year": " 1970"
+        },
+        {
+            "@rating": "PG-13",
+            "Title": {
+                "@runtime": "124",
+                "text": "The Notebook"
+            },
+            "Genre": "Romantic Drama",
+            "Director": {
+                "Name": {
+                    "First": "Nick",
+                    "Last": "Cassavetes"
+                }
+            },
+            "Studio": "Avery Pix",
+            "Year": " 2004"
+        }
+    ]
+}

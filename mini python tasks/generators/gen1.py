@@ -1,4 +1,4 @@
-from dec.dec_t2 import is_prime
+from decorators.dec_t2 import is_prime
 
 
 def take(n):

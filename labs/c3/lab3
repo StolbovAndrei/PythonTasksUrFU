@@ -1,0 +1,66 @@
+def dijkstra_maxmin(matrix: list[list[int]], n: int, start: int, finish: int) -> tuple[list[int], int]:
+    dist = [0] * n
+    parent = [-1] * n
+    dist[start] = 32767
+    visited = [False] * n
+
+    for _ in range(n):
+        max_dist_index = -1
+        max_val = -1
+        for i in range(n):
+            if not visited[i] and dist[i] > max_val:
+                max_val = dist[i]
+                max_dist_index = i
+        if max_dist_index == -1:
+            break
+        visited[max_dist_index] = True
+        
+        for neighbour_index in range(n):
+            weight = matrix[max_dist_index][neighbour_index]
+            if weight >= 32767:
+                continue
+            candidate = min(dist[max_dist_index], weight)
+            if candidate > dist[neighbour_index]:
+                dist[neighbour_index] = candidate
+                parent[neighbour_index] = max_dist_index
+
+    return parent, dist[finish]
+
+
+def main():
+    with open('in.txt', 'r') as f:
+        lines = f.readlines()
+
+    lines = [line.strip() for line in lines]
+
+    n = int(lines[0])
+    matrix = []
+
+    for i in range(1, n + 1):
+        row = list(map(int, lines[i].split()))
+        matrix.append(row)
+
+    start = int(lines[n + 1]) - 1
+    finish = int(lines[n + 2]) - 1
+
+    if start == finish:
+        result = "Y\n" + str(start + 1) + "\n" + "32768"
+    else:
+        parent, weight = dijkstra_maxmin(matrix, n, start, finish)
+        if parent[finish] == -1:
+            result = "N"
+        else:
+            path = []
+            cur = finish
+            while cur != -1:
+                path.append(cur + 1)
+                cur = parent[cur]
+            path.reverse()
+            result = "Y\n" + " ".join(str(v) for v in path) + "\n" + str(weight)
+
+    with open('out.txt', 'w') as f:
+        f.write(result)
+
+
+if __name__ == "__main__":
+    main()

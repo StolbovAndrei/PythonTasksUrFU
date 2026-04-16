@@ -1,142 +1,242 @@
 # PythonTasksUrFU
 
-Here are all the assignments I solved for the 3rd and 4th semesters at UrFU. By completing these tasks, I earned an automatic pass.  
-The repository contains solutions covering:
+Здесь собраны все задания, которые я выполнил в рамках 3-го и 4-го семестров обучения в УрФУ. Благодаря этим решениям я получил зачёт автоматом.  
+Репозиторий охватывает следующие темы:
 
-- **3rd semester:** decorators, generators, JPEG processing, working with `lxml`, `httpx`, `wikipediaapi`, `numpy`, `pandas`, `datetime`, `logging`, `argparse`, etc.  
-- **4th semester:** three algorithmic tasks from Yandex Contest (graph connectivity, BFS in a labyrinth, and a Dijkstra variant for max‑min path).
-
----
-
-## 3rd Semester
-
-### 🎨 Decorators
-
-- **`reverse_string`** – filters a string (keeps only letters and spaces) using regex, then reverses it; returns `None` if the result is not a string.  
-- **`prime_fizz_buzz_modificator`** – replaces numbers in a list according to rules:  
-  `42` → `"Answer!"`, prime → `"Prime"`, divisible by 3 and 5 → `"FizzBuzz"`, etc.  
-- **`retry`** – retries a function on specified exceptions with exponential backoff.  
-- **`my_saviour_decorator`** – manually copies `__name__` and `__doc__` (without `functools.wraps`).  
-- **`logging_decorator`** – logs file reading with error handling.
-
-### 🔁 Generators
-
-- **`take(n)`** – limits the output of a generator to `n` items.  
-- **`gen_prime()`** – infinite prime number generator, used with `take`.  
-- **`business_days(start, end)`** – yields weekdays between two dates.  
-- **`generate_dow(month, day, year)`** – yields the names of weekdays starting from a given date.  
-- **`business_plus_generate()`** – combines the two above generators.  
-- **`head_generator(filename, n)`** – reads the first `n` lines of a file, using a logging decorator.
-
-### 🖼️ JPEG and Image Processing
-
-- **BMP reader** – manually reads a 24‑bit uncompressed BMP file: file header, info header, and pixel data (BGR → RGB).  
-- **2D DCT / IDCT** – implemented using `scipy.fftpack.dct` (applied first to rows, then columns).  
-- **Block‑wise transform** – applied to an image in 8×8 blocks; visualised coefficients in log scale.  
-- **Reconstruction** – used IDCT to recover the original image and computed the reconstruction error.
-
-### 📊 NumPy Tasks
-
-- **`nearest_value`** – finds the element closest to a given number; returns the smallest if multiple.  
-- **`sort_evens`** – sorts only the even numbers in a 1D array (leaves odds unchanged).  
-- **`tensor_mask`** – applies XOR between a 3D tensor and a 2D mask (broadcasting).  
-- **`num_sum`** – computes the sum of digits for each number in an array.  
-- **`replace_nans`** – replaces `NaN` values with the column median; columns that are all `NaN` become zeros.
-
-### 🐼 Pandas Tasks
-
-- **`ZOOtable`** – converts a nested dictionary into a DataFrame, handles missing features, sorts columns, and drops columns with `NaN`.  
-- **`rus_feature`** – parses Russian dates (e.g., "10 июля 1856 г."), computes full years lived, adds a column with the result.  
-- **`men_stat`** – calculates max, min, median, mean, and variance of ages for male victims on the Titanic.  
-- **`age_stat`** – builds a pivot table of maximum age by sex and passenger class.  
-- **`fename_stat`** – extracts first names from passengers with "Miss", counts popularity, and sorts by popularity (descending) then alphabetically.
-
-### 🌐 Web & XML
-
-- **Wikipedia links** – uses `httpx` and `lxml` to extract all `/wiki/` links from a Wikipedia page.  
-- **Wikipedia BFS** – finds the shortest path between two Wikipedia pages using `wikipediaapi` and BFS.  
-- **HTTP Cat** – downloads a random cat image from `http.cat` and displays it.  
-- **XML to JSON** – parses `movies.xml` into a Python dictionary and writes it as JSON.  
-- **BibTeX parser** – reads a `.bib` file and converts it to a structured JSON representation.
+- **3-й семестр:** декораторы, генераторы, обработка JPEG, работа с `lxml`, `httpx`, `wikipediaapi`, `numpy`, `pandas`, `datetime`, `logging`, `argparse`, а также **сетевые задачи** (SMTP/IMAP).  
+- **4-й семестр:** три алгоритмические задачи с платформы Яндекс.Контест (связность графа, BFS в лабиринте и вариант Дейкстры для поиска пути с максимальной минимальной пропускной способностью).
 
 ---
 
-## 4th Semester – Yandex Contest Labs
+## 3-й семестр
 
-Three algorithmic problems solved on the Yandex Contest platform. Each reads from `in.txt` and writes to `out.txt`.
+### 🎨 Декораторы
 
-### 1. Graph Connectivity (Connected Components)
+Папка: `mini python tasks/decorators/`
 
-Given an adjacency matrix (size `n × n`), find all connected components using **DFS**.  
-- **Input:**  
-  - First line: `n`  
-  - Next `n` lines: adjacency matrix  
-- **Output:**  
-  - First line: number of components  
-  - One line per component: space‑separated vertex numbers (1‑based) sorted ascending  
-  - Components are sorted by their smallest vertex
+- **`dec_t1.py`** – декоратор `reverse_string`, который фильтрует строку (оставляет только буквы и пробелы) с помощью регулярного выражения, затем переворачивает её; возвращает `None`, если результат не является строкой.  
+- **`dec_t2.py`** – декоратор `prime_fizz_buzz_modificator`, заменяющий числа в списке по правилам:  
+  `42` → `"Answer!"`, простое число → `"Prime"`, делится на 3 и 5 → `"FizzBuzz"` и т.д.  
+- **`dec_t3.py`** – декоратор `retry`, повторяющий вызов функции при указанных исключениях с экспоненциальной задержкой.  
+- **`dec_t4.py`** – декоратор `my_saviour_decorator`, вручную копирующий `__name__` и `__doc__` (без использования `functools.wraps`).
 
-### 2. BFS in a Labyrinth
+### 🔁 Генераторы
 
-Find the shortest path in a grid where `0` = free, `1` = wall.  
-- **Input:**  
-  - First line: number of rows  
-  - Second line: number of columns  
-  - Next `rows` lines: the grid  
-  - Next line: start coordinates (1‑based)  
-  - Next line: finish coordinates (1‑based)  
-- **Output:**  
-  - `"N"` if no path exists  
-  - Otherwise `"Y"` followed by the path coordinates (one per line, 1‑based) in order from start to finish
+Папка: `mini python tasks/generators/`
 
-### 3. Max‑Min Path (Widest Path)
+- **`gen1.py`** – функция `take(n)`, ограничивающая вывод генератора первыми `n` элементами.  
+- **`gen2.py`** – генератор `gen_prime()`, бесконечно выдающий простые числа; используется совместно с `take`.  
+- **`gen3.py`** – генератор `business_days(start, end)`, возвращающий рабочие дни (понедельник–пятница) между двумя датами.  
+- **`gen4.py`** – генератор `generate_dow(month, day, year)`, выдающий названия дней недели, начиная с заданной даты.  
+- **`gen5.py`** – генератор `business_plus_generate()`, объединяющий два предыдущих генератора.  
+- **`head_generator`** (в одном из файлов) – читает первые `n` строк файла с использованием логирующего декоратора.
 
-Variant of Dijkstra: find a path from start to finish that maximises the minimum edge weight along the path (the *capacity*).  
-- **Input:**  
-  - First line: `n`  
-  - Next `n` lines: adjacency matrix (`32767` means no edge)  
-  - Next line: start vertex (1‑based)  
-  - Next line: finish vertex (1‑based)  
-- **Output:**  
-  - `"N"` if no path exists  
-  - Otherwise `"Y"` followed by the path (space‑separated vertices, 1‑based) and the capacity value (integer) on a new line
+### 🖼️ JPEG и обработка изображений
+
+Папка: `mini python tasks/JPEG/`
+
+- **`jpeg0.py`** – реализовано чтение 24-битного несжатого BMP-файла: заголовок файла, информационный заголовок и пиксельные данные (BGR → RGB).  
+- **2D DCT / IDCT** – реализовано с помощью `scipy.fftpack.dct` (применяется сначала к строкам, затем к столбцам).  
+- **Блочное преобразование** – применяется к изображению блоками 8×8; коэффициенты визуализируются в логарифмическом масштабе.  
+- **Восстановление** – с помощью обратного ДКП (IDCT) восстанавливается исходное изображение, вычисляется ошибка восстановления.
+
+### 📊 Задачи на NumPy
+
+Папка: `mini python tasks/numpy(1-5) and pandas(6-10)/`  
+Файлы: `task_1.py` – `task_5.py`
+
+- **`task_1.py`** – функция `nearest_value`: поиск элемента массива, ближайшего к заданному числу; при совпадении расстояний возвращается наименьший элемент.  
+- **`task_2.py`** – функция `sort_evens`: сортировка только чётных чисел в одномерном массиве (нечётные остаются на своих местах).  
+- **`task_3.py`** – функция `tensor_mask`: применение операции XOR между трёхмерным тензором и двумерной маской с использованием broadcasting.  
+- **`task_4.py`** – функция `num_sum`: вычисление суммы цифр для каждого числа в массиве.  
+- **`task_5.py`** – функция `replace_nans`: замена значений `NaN` медианой по столбцу; столбцы, целиком состоящие из `NaN`, заполняются нулями.
+
+### 🐼 Задачи на Pandas
+
+Папка: та же, файлы: `task_6.py` – `task_10.py`
+
+- **`task_6.py`** – функция `ZOOtable`: преобразование вложенного словаря в DataFrame, обработка отсутствующих признаков, сортировка столбцов и удаление столбцов с `NaN`.  
+- **`task_7.py`** – функция `rus_feature`: парсинг русских дат (например, «10 июля 1856 г.»), вычисление полных прожитых лет, добавление столбца с результатом.  
+- **`task_8.py`** – функция `men_stat`: расчёт максимума, минимума, медианы, среднего и дисперсии возраста мужчин – жертв крушения «Титаника».  
+- **`task_9.py`** – функция `age_stat`: построение сводной таблицы максимального возраста по полу и классу пассажира.  
+- **`task_10.py`** – функция `fename_stat`: извлечение имён пассажирок с обращением «Miss», подсчёт популярности имён, сортировка по убыванию популярности, затем по алфавиту.
+
+### 🌐 Web и XML
+
+- **Wiki** (папка `wiki/`)  
+  - **`wiki1.py`** – извлечение всех ссылок `/wiki/` с заданной страницы Википедии с помощью `httpx` и `lxml`.  
+  - **`wiki2.py`** – поиск кратчайшего пути между двумя страницами Википедии с использованием `wikipediaapi` и BFS.  
+  - **`wiki3.py`** – загрузка случайного изображения кота с `http.cat` и его отображение.
+
+- **XPath** (папка `xpath/`)  
+  - **`xpath1.py`** – парсинг XML-файла `movies.xml` в словарь Python и запись результата в JSON.  
+  - **`xpath2.py`** – парсинг BibTeX-файла `references.bib` в структурированное JSON-представление.  
+  - **`xpath3.py`** – дополнительная задача на XPath (уточняется в коде).
+
+### 📧 Сетевые задачи
+
+Папка: `mini python tasks/network tasks/`
+
+Две практические работы, посвящённые созданию и отправке электронной почты с использованием только стандартной библиотеки Python.
+
+#### 1. `make_email.py` – составное MIME‑письмо
+
+Создаёт письмо в формате `.eml` со следующими требованиями:
+
+- Поля `From` и `To` содержат фамилию (Столбов).  
+- Письмо является **составным** (multipart):  
+  - `text/plain` (обычный текст)  
+  - `text/html` с встроенной ссылкой на изображение из интернета  
+  - текстовое вложение (`attachment.txt`)  
+  - GIF‑вложение (локальный файл `komaru-komaru-cat.gif`)
+
+Письмо сохраняется в файл `Stolbov_Email.eml` и корректно открывается в почтовых клиентах.  
+✅ Протестировано в **Mozilla Thunderbird**.
+
+#### 2. `send_email.py` – отправка письма и работа с IMAP
+
+Автоматизирует отправку письма и организацию папок на почтовом ящике:
+
+- Отправляет письмо через SMTP‑сервер (например, `smtp.mail.ru`) с темой и телом, содержащими фамилию **транслитом** (`Stolbov`) и группу (`MO-201`).  
+- Подключается по IMAP (например, `imap.mail.ru`) и создаёт папку `Stolbov`, если её ещё нет.  
+- Находит только что отправленное письмо и копирует его в созданную папку с помощью команды `APPEND`.
+
+Все действия сопровождаются выводом в консоль.
 
 ---
 
-## 🚀 How to Run
+## 4-й семестр – Лабораторные Яндекс.Контест
 
-Most scripts are self‑contained and can be run directly. For tasks that read/write files, place `in.txt` in the same directory and the output will be written to `out.txt`.  
-The repository includes all necessary imports; install missing dependencies with:
+Три алгоритмические задачи, решённые на платформе Яндекс.Контест. Каждая читает входные данные из `in.txt` и записывает результат в `out.txt`.
+
+Папки: `a1/`, `b2/`, `c3/` (содержат исполняемые файлы `lab1`, `lab2`, `lab3` и соответствующие `in.txt`/`out.txt`).
+
+### 1. Связность графа (компоненты связности)
+
+Дана матрица смежности размером `n × n`. Требуется найти все компоненты связности с помощью **DFS**.  
+
+- **Входные данные:**  
+  - Первая строка: `n`  
+  - Следующие `n` строк: матрица смежности  
+- **Выходные данные:**  
+  - Первая строка: количество компонент связности  
+  - Далее по одной строке на каждую компоненту: номера вершин (нумерация с 1) через пробел, отсортированные по возрастанию  
+  - Компоненты выводятся в порядке возрастания их минимальной вершины
+
+### 2. BFS в лабиринте
+
+Поиск кратчайшего пути в сетке, где `0` – свободная клетка, `1` – стена.  
+
+- **Входные данные:**  
+  - Первая строка: количество строк  
+  - Вторая строка: количество столбцов  
+  - Следующие `rows` строк: сетка  
+  - Далее: координаты старта (нумерация с 1)  
+  - Далее: координаты финиша (нумерация с 1)  
+- **Выходные данные:**  
+  - `"N"`, если путь не существует  
+  - Иначе `"Y"`, за которым следуют координаты пути (по одной паре на строку, нумерация с 1) в порядке от старта к финишу
+
+### 3. Максимально-минимальный путь (widest path)
+
+Вариант алгоритма Дейкстры: найти путь от стартовой вершины к конечной, максимизирующий минимальный вес ребра на пути (пропускную способность).  
+
+- **Входные данные:**  
+  - Первая строка: `n`  
+  - Следующие `n` строк: матрица смежности (вес `32767` означает отсутствие ребра)  
+  - Далее: стартовая вершина (нумерация с 1)  
+  - Далее: конечная вершина (нумерация с 1)  
+- **Выходные данные:**  
+  - `"N"`, если путь не существует  
+  - Иначе `"Y"`, затем через пробел номера вершин пути (нумерация с 1) и на новой строке – значение пропускной способности (целое число)
+
+---
+
+## 🚀 Как запускать
+
+Большинство скриптов самодостаточны и могут быть запущены напрямую. Для задач, работающих с файлами, поместите `in.txt` в ту же директорию, результат будет записан в `out.txt`.  
+
+Для установки необходимых зависимостей выполните:
 
 ```bash
 pip install numpy pandas matplotlib scipy pillow httpx lxml wikipedia-api python-dateutil
 ```
 
+> Сетевые задачи используют только стандартную библиотеку Python (`smtplib`, `imaplib`, `email`), дополнительных пакетов не требуется.
+
 ---
 
-## 📂 Repository Structure
+## 📂 Структура репозитория
 
 ```
 PythonTasksUrFU/
-├── labs/                 # Yandex Contest solutions (4th semester)
-│   ├── a1/               # Graph connectivity
-│   ├── b2/               # BFS labyrinth
-│   └── c3/               # Max‑min Dijkstra
-├── mini python tasks/    # 3rd semester topics
+├── a1/                                   # Связность графа (4 семестр)
+│   ├── in.txt
+│   ├── lab1
+│   └── out.txt
+├── b2/                                   # BFS в лабиринте
+│   ├── in.txt
+│   ├── lab2
+│   └── out.txt
+├── c3/                                   # Макс.-мин. путь
+│   ├── in.txt
+│   ├── lab3
+│   └── out.txt
+├── mini python tasks/
+│   ├── combinatorial algorithms/         # (зарезервировано)
 │   ├── decorators/
+│   │   ├── dec_t1.py
+│   │   ├── dec_t2.py
+│   │   ├── dec_t3.py
+│   │   └── dec_t4.py
 │   ├── generators/
+│   │   ├── gen1.py
+│   │   ├── gen2.py
+│   │   ├── gen3.py
+│   │   ├── gen4.py
+│   │   └── gen5.py
 │   ├── JPEG/
+│   │   └── jpeg0.py
 │   ├── numpy(1-5) and pandas(6-10)/
+│   │   ├── task_1.py
+│   │   ├── task_2.py
+│   │   ├── task_3.py
+│   │   ├── task_4.py
+│   │   ├── task_5.py
+│   │   ├── task_6.py
+│   │   ├── task_7.py
+│   │   ├── task_8.py
+│   │   ├── task_9.py
+│   │   └── task_10.py
 │   ├── resources/
+│   │   ├── answer.jpg
+│   │   ├── classwork.py
+│   │   ├── data_file.json
+│   │   ├── file.txt
+│   │   ├── movies.json
+│   │   ├── movies.xml
+│   │   ├── references.bib
+│   │   ├── test_image.bmp
+│   │   ├── text_for_POSIX.txt
+│   │   └── titanic_train.csv
 │   ├── wiki/
-│   └── xpath/
+│   │   ├── wiki1.py
+│   │   ├── wiki2.py
+│   │   └── wiki3.py
+│   ├── xpath/
+│   │   ├── xpath1.py
+│   │   ├── xpath2.py
+│   │   └── xpath3.py
+│   └── network tasks/
+│       ├── komaru-komaru-cat.gif
+│       ├── make_email.py
+│       └── send_email.py
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 📝 Note
+## 📝 Примечание
 
-All code is my own work, solved during the course. The repository serves as both a portfolio and a reference for future students.  
-For any questions or suggestions, feel free to open an issue or contact me.
+Весь код написан мной самостоятельно в процессе обучения. Репозиторий служит одновременно портфолио и справочным материалом для будущих студентов.
